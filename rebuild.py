@@ -30,6 +30,11 @@ def rebuild(img_name):
 
     # lr image
     # util.show_img_from_array(lr_image)
+    
+    # otherwise there would be error for image.save
+    if not os.path.isdir(TEST_RESULT_DIR):
+        os.makedirs(TEST_RESULT_DIR)
+    
     util.save_img_from_array(
         lr_image, TEST_RESULT_DIR+img_name.split('.')[0]+'_lr.'+img_name.split('.')[-1])
     # original image
