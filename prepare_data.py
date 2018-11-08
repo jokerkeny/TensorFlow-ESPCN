@@ -23,6 +23,7 @@ def show_img_from_array(img_data):
 def preprocess_img(file_path):
     """
     处理图片
+    高清变低清，by RATIO
     :param file_path:
     :return:
     """
@@ -52,8 +53,10 @@ def make_sub_data(img_list):
             for y in range(0, w - IMAGE_SIZE + 1, STRIDE):
                 sub_input = input_[x: x + IMAGE_SIZE,
                                    y: y + IMAGE_SIZE]
+                """ useless
                 sub_input = sub_input.reshape(
-                    [IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNEl])
+                    [IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNEl]) 
+                """
                 sub_input = sub_input / 255.0
                 sub_input_sequence.append(sub_input)
 
@@ -61,8 +64,10 @@ def make_sub_data(img_list):
                 label_y = y * RATIO
                 sub_label = label_[label_x: label_x + IMAGE_SIZE * RATIO,
                                    label_y: label_y + IMAGE_SIZE * RATIO]
+                """ useless 
                 sub_label = sub_label.reshape(
-                    [IMAGE_SIZE * RATIO, IMAGE_SIZE * RATIO, IMAGE_CHANNEl])
+                    [IMAGE_SIZE * RATIO, IMAGE_SIZE * RATIO, IMAGE_CHANNEl]) 
+                """
                 sub_label = sub_label / 255.0
                 sub_label_sequence.append(sub_label)
 
