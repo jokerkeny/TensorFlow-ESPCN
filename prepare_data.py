@@ -4,12 +4,14 @@ import glob
 from PIL import Image
 import h5py
 import argparse
+import random
 
 RATIO = 2  # 放大比例
 IMAGE_SIZE = 17  # 训练图片大小
 STRIDE = 10  # 裁剪步长
 IMAGE_CHANNEl = 3  # 图片通道
 TRAIN_NUM=50 # 默认用于train的图片数
+TRAIN_PATH='images' # 用于train的HR图像路径
 
 def get_arguments():
     """ 
@@ -54,6 +56,8 @@ def make_sub_data(img_list):
     sub_input_sequence = []
     sub_label_sequence = []
     num=0
+    
+    random.shuffle(img_list)
     for file_path in img_list:
         num+=1
         if num >args.train_num:
@@ -102,7 +106,7 @@ def make_data_hf(input_, label_):
         hf.create_dataset('label', data=label_)
 
 
-def prepare_data(dataset='images'):
+def prepare_data(dataset=TRAIN_PATH):
     """
     :param dataset:
     :return:
@@ -117,4 +121,4 @@ def prepare_data(dataset='images'):
 
 args=get_arguments()
 if __name__ == '__main__':
-    prepare_data(dataset='images')
+    prepare_data(dataset=TRAIN_PATH)
