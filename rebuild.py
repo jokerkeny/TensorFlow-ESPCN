@@ -5,8 +5,8 @@ from espcn import ESPCN
 import prepare_data
 import util
 
-TEST_IMAGE_DIR = './test_images'
-TEST_RESULT_DIR = './result'
+TEST_IMAGE_DIR = './test_images/'
+TEST_RESULT_DIR = './result/'
 
 
 def rebuild(img_name):
@@ -14,7 +14,7 @@ def rebuild(img_name):
     图像超分辨率重建
     :return:
     """
-    lr_image, ori_image = prepare_data.preprocess_img(TEST_IMAGE_DIR+img_name)
+    lr_image, ori_image = prepare_data.preprocess_img(os.path.join(TEST_IMAGE_DIR,img_name))
     try:
         image_height, image_width, _ = lr_image.shape
     except:

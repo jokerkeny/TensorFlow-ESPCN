@@ -3,8 +3,8 @@ import math
 from PIL import Image
 import os
 
-TEST_IMAGE_DIR = './test_images'
-TEST_RESULT_DIR = './result'
+TEST_IMAGE_DIR = './test_images/'
+TEST_RESULT_DIR = './result/' # best ending with /
 
 
 def psnr(image_a, image_b):
@@ -19,6 +19,9 @@ def psnr(image_a, image_b):
 if __name__ == '__main__':
     img_list = [filename for filename in os.listdir(
         TEST_IMAGE_DIR) if filename.endswith('jpg')]
+    
+    hr_sr_num=0
+    hr_sr_sum=0
     for img_name in img_list:
         try:
             hr_image = Image.open(
@@ -29,11 +32,12 @@ if __name__ == '__main__':
                 TEST_RESULT_DIR+img_name.replace('.jpg', '_lr.png'))
         except:
             continue
-        bi_image = lr_image.resize(sr_image.size, Image.BICUBIC)
+        # bi_image = lr_image.resize(sr_image.size, Image.BICUBIC)
         lr_image = lr_image.resize(sr_image.size)
 
-        hr_lr_value = psnr(hr_image, lr_image)
+        # hr_lr_value = psnr(hr_image, lr_image)
         hr_sr_value = psnr(hr_image, sr_image)
-        hr_bi_value = psnr(hr_image, bi_image)
-        print(img_name, '\t\tLR:\t%f\tESPCN:\t%f\tBICUBIC:\t%f' %
-              (hr_lr_value, hr_sr_value, hr_bi_value))
+        hr_sr_sum+=hr_sr_value
+        hr_sr_num+=1
+        # hr_bi_value = psnr(hr_image, bi_image)
+    print("Average PSNR for ESPCN: %f" %(hr_sr_sum/hr_sr_num))
