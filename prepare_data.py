@@ -4,9 +4,9 @@ import glob
 from PIL import Image
 import h5py
 
-RATIO = 3  # 放大比例
+RATIO = 2  # 放大比例
 IMAGE_SIZE = 17  # 训练图片大小
-STRIDE = 5  # 裁剪步长
+STRIDE = 10  # 裁剪步长
 IMAGE_CHANNEl = 3  # 图片通道
 
 
@@ -43,7 +43,11 @@ def make_sub_data(img_list):
     """
     sub_input_sequence = []
     sub_label_sequence = []
+    num=0
     for file_path in img_list:
+        num+=1
+        if num >90:
+            break
         input_, label_ = preprocess_img(file_path)
         h, w, c = input_.shape
         if c != IMAGE_CHANNEl:

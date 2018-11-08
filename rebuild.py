@@ -5,8 +5,8 @@ from espcn import ESPCN
 import prepare_data
 import util
 
-TEST_IMAGE_DIR = './test_images/Set14/'
-TEST_RESULT_DIR = './result/Set14/'
+TEST_IMAGE_DIR = './test_images'
+TEST_RESULT_DIR = './result'
 
 
 def rebuild(img_name):
