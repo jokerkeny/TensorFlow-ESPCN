@@ -22,11 +22,11 @@ if __name__ == '__main__':
     for img_name in img_list:
         try:
             hr_image = Image.open(
-                TEST_RESULT_DIR+img_name.replace('.jpg', '_hr.jpg'))
+                TEST_RESULT_DIR+img_name.replace('.jpg', '_hr.png'))
             sr_image = Image.open(
-                TEST_RESULT_DIR+img_name.replace('.jpg', '_sr.jpg'))
+                TEST_RESULT_DIR+img_name.replace('.jpg', '_sr.png'))
             lr_image = Image.open(
-                TEST_RESULT_DIR+img_name.replace('.jpg', '_lr.jpg'))
+                TEST_RESULT_DIR+img_name.replace('.jpg', '_lr.png'))
         except:
             continue
         bi_image = lr_image.resize(sr_image.size, Image.BICUBIC)

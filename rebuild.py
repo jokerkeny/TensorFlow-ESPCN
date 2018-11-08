@@ -28,23 +28,23 @@ def rebuild(img_name):
                       ratio=prepare_data.RATIO)
         sr_image = espcn.generate(lr_image / 255.0)
 
-    # lr image
-    # util.show_img_from_array(lr_image)
     
     # otherwise there would be error for image.save
     if not os.path.isdir(TEST_RESULT_DIR):
         os.makedirs(TEST_RESULT_DIR)
-    
+
+    # lr image
+    # util.show_img_from_array(lr_image)
     util.save_img_from_array(
-        lr_image, TEST_RESULT_DIR+img_name.split('.')[0]+'_lr.'+img_name.split('.')[-1])
+        lr_image, TEST_RESULT_DIR+img_name.split('.')[0]+'_lr.png')
     # original image
     # util.show_img_from_array(ori_image)
     util.save_img_from_array(ori_image, TEST_RESULT_DIR +
-                             img_name.split('.')[0]+'_hr.'+img_name.split('.')[-1])
+                             img_name.split('.')[0]+'_hr.png')
     # sr image
     # util.show_img_from_array(sr_image)
     util.save_img_from_array(sr_image, TEST_RESULT_DIR +
-                             img_name.split('.')[0]+'_sr.'+img_name.split('.')[-1])
+                             img_name.split('.')[0]+'_sr.png')
 
 
 if __name__ == '__main__':
