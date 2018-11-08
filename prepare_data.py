@@ -3,12 +3,22 @@ import os
 import glob
 from PIL import Image
 import h5py
+import argparse
 
 RATIO = 2  # 放大比例
 IMAGE_SIZE = 17  # 训练图片大小
 STRIDE = 10  # 裁剪步长
 IMAGE_CHANNEl = 3  # 图片通道
+TRAIN_NUM=50 # 默认用于train的图片数
 
+def get_arguments():
+    """ 
+    传入参数
+    """
+    parser = argparse.ArgumentParser(description='EspcnNet generation script')
+    parser.add_argument('--train_num', type=int, default=TRAIN_NUM,
+                        help='Which model checkpoint to generate from')
+    return parser.parse_args()
 
 def show_img_from_array(img_data):
     """
@@ -46,7 +56,7 @@ def make_sub_data(img_list):
     num=0
     for file_path in img_list:
         num+=1
-        if num >90:
+        if num >args.train_num:
             break
         input_, label_ = preprocess_img(file_path)
         h, w, c = input_.shape
@@ -107,4 +117,5 @@ def prepare_data(dataset='images'):
 
 
 if __name__ == '__main__':
+    args=get_arguments()
     prepare_data(dataset='images')
