@@ -115,7 +115,6 @@ def prepare_data(dataset='images'):
     arrlabel = np.asarray(sub_label_sequence)
     make_data_hf(arrinput, arrlabel)
 
-
+args=get_arguments()
 if __name__ == '__main__':
-    args=get_arguments()
     prepare_data(dataset='images')
