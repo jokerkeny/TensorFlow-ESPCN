@@ -7,15 +7,15 @@ pip3 install -r requirements.txt
 
 ### Usage
 
-Train the model:
+Train the model(after put the train_HR images in folder images/):
 ```
 python3 train.py
 ```
-Superresolution:
+Superresolution(after put the test_LR images in folder test_images/):
 ```
 python3 rebuild.py
 ```
-Evaluation:
+Evaluation(after put the test_HR images(jpg) in the folder result/):
 ```
 python3 psnr.py
 ```
