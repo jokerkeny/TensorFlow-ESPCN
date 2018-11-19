@@ -1,4 +1,4 @@
-## 基于ESPCN的图像超分辨率重建
+## Superresolution based on ESCPN
 
 ### Installation
 ```
@@ -6,20 +6,24 @@ pip3 install -r requirements.txt
 ```
 
 ### Usage
-准备训练数据
-```
-python3 prepare_data.py
-```
-训练模型
+
+Train the model:
 ```
 python3 train.py
 ```
-重建
+Superresolution:
 ```
 python3 rebuild.py
 ```
-评估重建效果
+Evaluation:
 ```
 python3 psnr.py
 ```
 
+### Reference
+
+Efficient Sub-Pixel Convolutional Neural Network(ESCPN)
+https://arxiv.org/pdf/1609.05158.pdf
+TensorFlow implementation of ESCPN
+https://github.com/kweisamx/TensorFlow-ESPCN
+https://github.com/Nyloner/TensorFlow-ESPCN
