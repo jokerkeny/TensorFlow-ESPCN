@@ -25,15 +25,15 @@ if __name__ == '__main__':
     for img_name in img_list:
         try:
             hr_image = Image.open(
-                TEST_RESULT_DIR+img_name.replace('.jpg', '_hr.png'))
+                TEST_RESULT_DIR+img_name.replace('.jpg', '.jpg'))
             sr_image = Image.open(
-                TEST_RESULT_DIR+img_name.replace('.jpg', '_sr.png'))
-            lr_image = Image.open(
-                TEST_RESULT_DIR+img_name.replace('.jpg', '_lr.png'))
+                TEST_RESULT_DIR+img_name.replace('.jpg', '.png'))
+            # lr_image = Image.open(
+            #     TEST_RESULT_DIR+img_name.replace('.jpg', '_lr.png'))
         except:
             continue
         # bi_image = lr_image.resize(sr_image.size, Image.BICUBIC)
-        lr_image = lr_image.resize(sr_image.size)
+        # lr_image = lr_image.resize(sr_image.size)
 
         # hr_lr_value = psnr(hr_image, lr_image)
         hr_sr_value = psnr(hr_image, sr_image)

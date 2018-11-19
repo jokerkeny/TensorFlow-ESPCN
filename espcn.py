@@ -8,6 +8,9 @@ import h5py
 import numpy as np
 import prepare_data
 import util
+from time import time
+from PIL import Image
+
 
 
 TEST_IMAGE_DIR = './test_images/'
@@ -234,13 +237,14 @@ class ESPCN:
         self.create_network()
         self.load_checkpoint()
 
+        ts=time()
         for img_name in img_list:
-            lr_image, ori_image = prepare_data.preprocess_img(os.path.join(TEST_IMAGE_DIR,img_name))
+            lr_image = Image.open(os.path.join(TEST_IMAGE_DIR,img_name))
+            lr_image=np.asarray(lr_image)
             try:
                 image_height, image_width, _ = lr_image.shape
             except:
                 return
-            
             lr_image2=lr_image
             lr_image=lr_image/255.0
             self.image_height = image_height
@@ -252,8 +256,7 @@ class ESPCN:
             result = self.pred.eval({self.images: lr_image.reshape(
                 1, self.image_height, self.image_width, self.image_channel)})
             result[result < 0] = 0
-            sr_image = np.squeeze(result) * 255.
-
+            sr_image = np.squeeze(result) * 255.0
             
             sr_image = np.uint8(sr_image)
 
@@ -263,15 +266,16 @@ class ESPCN:
 
             # lr image
             # util.show_img_from_array(lr_image)
-            lr_image=lr_image2
-            util.save_img_from_array(
-                lr_image, TEST_RESULT_DIR+img_name.split('.')[0]+'_lr.png')
+            # lr_image=lr_image2
+            # util.save_img_from_array(
+            #     lr_image, TEST_RESULT_DIR+img_name.split('.')[0]+'_lr.png')
             # original image
-            # util.show_img_from_array(ori_image)
-            util.save_img_from_array(ori_image, TEST_RESULT_DIR +
-                                    img_name.split('.')[0]+'_hr.png')
+            # # util.show_img_from_array(ori_image)
+            # util.save_img_from_array(ori_image, TEST_RESULT_DIR +
+            #                         img_name.split('.')[0]+'_hr.png')
             # sr image
             # util.show_img_from_array(sr_image)
             util.save_img_from_array(sr_image, TEST_RESULT_DIR +
-                                    img_name.split('.')[0]+'_sr.png')
+                                    img_name.split('.')[0]+'.png')
+        print('Superresolution takes: %d ms' % ((time()-ts)*1000))
 
