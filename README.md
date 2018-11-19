@@ -22,8 +22,8 @@ python3 psnr.py
 
 ### Reference
 
-Efficient Sub-Pixel Convolutional Neural Network(ESCPN)
-https://arxiv.org/pdf/1609.05158.pdf
-TensorFlow implementation of ESCPN
-https://github.com/kweisamx/TensorFlow-ESPCN
-https://github.com/Nyloner/TensorFlow-ESPCN
+Efficient Sub-Pixel Convolutional Neural Network(ESCPN)  
+https://arxiv.org/pdf/1609.05158.pdf  
+TensorFlow implementation of ESCPN  
+https://github.com/kweisamx/TensorFlow-ESPCN  
+https://github.com/Nyloner/TensorFlow-ESPCN  
