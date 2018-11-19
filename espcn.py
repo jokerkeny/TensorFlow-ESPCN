@@ -21,7 +21,7 @@ class ESPCN:
         self.learning_rate = 0.00001
         self.epoch = 100
         self.checkpoint_dir = 'checkpoint'
-        self.train_data_path = self.checkpoint_dir + '/' + 'train_data.h5'
+        self.train_data_path = 'h5data' + '/' + 'train_data.h5'
 
         self.create_network()
 

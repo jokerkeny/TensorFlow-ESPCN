@@ -96,11 +96,11 @@ def make_data_hf(input_, label_):
     """
     保存训练数据
     """
-    checkpoint_dir = 'checkpoint'
-    if not os.path.isdir(os.path.join(os.getcwd(), checkpoint_dir)):
-        os.makedirs(os.path.join(os.getcwd(), checkpoint_dir))
+    h5data_dir = 'h5data'
+    if not os.path.isdir(os.path.join(os.getcwd(), h5data_dir)):
+        os.makedirs(os.path.join(os.getcwd(), h5data_dir))
     savepath = os.path.join(
-        os.getcwd(), checkpoint_dir + '/train_data.h5')
+        os.getcwd(), h5data_dir + '/train_data.h5')
     with h5py.File(savepath, 'w') as hf:
         hf.create_dataset('input', data=input_)
         hf.create_dataset('label', data=label_)
@@ -121,4 +121,4 @@ def prepare_data(dataset=TRAIN_PATH):
 
 args=get_arguments()
 if __name__ == '__main__':
-    prepare_data(dataset=TRAIN_PATH)
+    prepare_data()
